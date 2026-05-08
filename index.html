@@ -4,589 +4,682 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Samhitha A Ram — Data Analyst</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --bg: #0a0a0f;
-  --surface: #12121a;
-  --card: #16161f;
-  --border: rgba(255,255,255,0.07);
-  --accent: #7c6aff;
-  --accent2: #ff6b9d;
-  --accent3: #00d4aa;
-  --text: #f0eff8;
-  --muted: #7a7990;
-  --tag-bg: rgba(124,106,255,0.12);
-  --tag-color: #a89fff;
+  --bg: #faf8f4;
+  --surface: #f3f0ea;
+  --card: #ffffff;
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.14);
+  --accent: #1a56db;
+  --accent-light: #eff6ff;
+  --accent-border: #bfdbfe;
+  --text: #1a1714;
+  --muted: #6b6760;
+  --subtle: #9c9891;
+  --ink: #2d2a25;
+  --warm: #c2410c;
+  --warm-light: #fff7ed;
+  --green: #166534;
+  --green-light: #f0fdf4;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-
-/* ── NOISE OVERLAY ── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
 }
 
-/* ── GLOW ORBS ── */
-.orb {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.18;
+/* ── SUBTLE GRID TEXTURE ── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,0.02) 1px,transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;
+  z-index:0;
 }
-.orb-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; right: -100px; }
-.orb-2 { width: 400px; height: 400px; background: var(--accent2); bottom: 100px; left: -100px; }
-.orb-3 { width: 300px; height: 300px; background: var(--accent3); top: 50%; left: 40%; }
 
 /* ── NAV ── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 20px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(10,10,15,0.7);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  padding:18px 64px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(250,248,244,0.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
 }
-.nav-logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: -0.5px;
-  color: var(--text);
-  text-decoration: none;
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  font-size:20px;
+  color:var(--text);
+  text-decoration:none;
+  letter-spacing:-0.5px;
 }
-.nav-logo span { color: var(--accent); }
-.nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
+.nav-logo em{color:var(--accent);font-style:italic;}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.nav-links a{
+  color:var(--muted);
+  text-decoration:none;
+  font-size:14px;
+  font-weight:400;
+  letter-spacing:0.01em;
+  transition:color 0.2s;
 }
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover{color:var(--text);}
+.nav-cta{
+  background:var(--text);
+  color:var(--bg)!important;
+  padding:9px 22px!important;
+  border-radius:100px!important;
+  font-weight:500!important;
+  font-size:13px!important;
+  transition:all 0.2s!important;
+}
+.nav-cta:hover{background:var(--ink)!important;transform:translateY(-1px);}
 
 /* ── SECTIONS ── */
-section { position: relative; z-index: 1; }
+section{position:relative;z-index:1;}
 
 /* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 120px 60px 80px;
-  max-width: 1100px;
-  margin: 0 auto;
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:120px 64px 80px;
+  max-width:1200px;
+  margin:0 auto;
+  gap:80px;
 }
-.hero-content { max-width: 680px; }
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--tag-bg);
-  border: 1px solid rgba(124,106,255,0.25);
-  border-radius: 100px;
-  padding: 6px 16px;
-  font-size: 13px;
-  color: var(--tag-color);
-  margin-bottom: 28px;
-  font-weight: 500;
+.hero-left{}
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:500;
+  color:var(--accent);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:24px;
 }
-.hero-badge::before {
-  content: '';
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--accent3);
-  box-shadow: 0 0 8px var(--accent3);
-  animation: pulse 2s infinite;
+.hero-eyebrow::before{
+  content:'';
+  width:24px;height:1px;
+  background:var(--accent);
 }
-@keyframes pulse {
-  0%,100% { opacity: 1; } 50% { opacity: 0.4; }
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,4.5vw,62px);
+  font-weight:800;
+  line-height:1.08;
+  letter-spacing:-1.5px;
+  margin-bottom:8px;
+  color:var(--text);
 }
-.hero h1 {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(42px, 6vw, 72px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  margin-bottom: 24px;
+.hero h1 em{
+  font-style:italic;
+  color:var(--accent);
 }
-.hero h1 .name { display: block; }
-.hero h1 .role {
-  display: block;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero-sub{
+  font-size:16px;
+  color:var(--muted);
+  max-width:440px;
+  margin:20px 0 36px;
+  font-weight:300;
+  line-height:1.85;
 }
-.hero-sub {
-  font-size: 17px;
-  color: var(--muted);
-  max-width: 520px;
-  margin-bottom: 40px;
-  font-weight: 300;
-  line-height: 1.8;
+.hero-sub strong{color:var(--text);font-weight:500;}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:56px;}
+.btn-primary{
+  background:var(--accent);
+  color:#fff;
+  padding:13px 26px;
+  border-radius:100px;
+  text-decoration:none;
+  font-weight:500;
+  font-size:14px;
+  transition:all 0.2s;
+  border:none;
+  cursor:pointer;
 }
-.hero-sub strong { color: var(--text); font-weight: 500; }
-.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  transition: all 0.2s;
-  border: none;
-  cursor: pointer;
+.btn-primary:hover{background:#1648c7;transform:translateY(-2px);}
+.btn-outline{
+  background:transparent;
+  color:var(--text);
+  padding:13px 26px;
+  border-radius:100px;
+  text-decoration:none;
+  font-weight:400;
+  font-size:14px;
+  border:1px solid var(--border-strong);
+  transition:all 0.2s;
 }
-.btn-primary:hover { background: #9180ff; transform: translateY(-2px); }
-.btn-outline {
-  background: transparent;
-  color: var(--text);
-  padding: 14px 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  border: 1px solid var(--border);
-  transition: all 0.2s;
+.btn-outline:hover{border-color:var(--text);background:rgba(0,0,0,0.03);}
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
 }
-.btn-outline:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
-.hero-stats {
-  display: flex;
-  gap: 40px;
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border);
+.stat{
+  background:var(--card);
+  padding:20px 16px;
+  text-align:center;
 }
-.stat-num {
-  font-family: 'Syne', sans-serif;
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1;
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  font-weight:700;
+  color:var(--text);
+  line-height:1;
+  margin-bottom:4px;
 }
-.stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+.stat-label{font-size:11px;color:var(--subtle);letter-spacing:0.06em;text-transform:uppercase;}
+
+/* ── HERO RIGHT (visual card) ── */
+.hero-right{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.profile-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+}
+.profile-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,var(--accent),#60a5fa);
+}
+.profile-avatar{
+  width:64px;height:64px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#60a5fa);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:22px;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:16px;
+  flex-shrink:0;
+}
+.profile-name{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:700;
+  color:var(--text);margin-bottom:2px;
+}
+.profile-title{font-size:13px;color:var(--accent);font-weight:500;margin-bottom:16px;}
+.profile-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.ptag{
+  background:var(--accent-light);
+  color:var(--accent);
+  border:1px solid var(--accent-border);
+  border-radius:100px;
+  padding:3px 10px;
+  font-size:11px;
+  font-weight:500;
+}
+.mini-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.mini-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px;
+}
+.mini-card-icon{font-size:20px;margin-bottom:8px;}
+.mini-card-label{font-size:11px;color:var(--subtle);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.mini-card-val{font-size:18px;font-weight:500;color:var(--text);font-family:'Playfair Display',serif;}
+.availability-bar{
+  background:var(--green-light);
+  border:1px solid #bbf7d0;
+  border-radius:12px;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  color:var(--green);
+  font-weight:500;
+}
+.avail-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--green);
+  animation:pulse 2s infinite;
+  flex-shrink:0;
+}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(22,101,52,0.4);}50%{opacity:0.7;box-shadow:0 0 0 6px rgba(22,101,52,0);}}
+
+/* ── DIVIDER ── */
+.divider{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 64px;
+  position:relative;
+  z-index:1;
+}
+.divider hr{border:none;border-top:1px solid var(--border);}
 
 /* ── SKILLS ── */
-.skills-section {
-  padding: 100px 60px;
-  max-width: 1100px;
-  margin: 0 auto;
+.skills-section{
+  padding:96px 64px;
+  max-width:1200px;
+  margin:0 auto;
 }
-.section-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 16px;
+.section-eyebrow{
+  font-size:11px;font-weight:500;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
 }
-.section-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(28px, 4vw, 42px);
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 16px;
-  line-height: 1.1;
+.section-eyebrow::before{content:'';width:20px;height:1px;background:var(--accent);}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,3.5vw,40px);
+  font-weight:700;
+  letter-spacing:-1px;
+  margin-bottom:12px;
+  color:var(--text);
+  line-height:1.1;
 }
-.section-sub { color: var(--muted); font-size: 16px; max-width: 500px; margin-bottom: 56px; }
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-.skill-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-  transition: all 0.25s;
-  position: relative;
-  overflow: hidden;
+.section-sub{color:var(--muted);font-size:15px;max-width:480px;margin-bottom:52px;font-weight:300;}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.skill-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+  transition:all 0.25s;
+  position:relative;
 }
-.skill-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  border-radius: 14px 14px 0 0;
+.skill-card:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+.skill-icon{
+  width:40px;height:40px;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+  margin-bottom:14px;
 }
-.skill-card.bi::before   { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-.skill-card.data::before { background: linear-gradient(90deg, var(--accent3), var(--accent)); }
-.skill-card.code::before { background: linear-gradient(90deg, var(--accent2), #ff9f6b); }
-.skill-card.cloud::before{ background: linear-gradient(90deg, #00b4d8, var(--accent3)); }
-.skill-card:hover { border-color: rgba(124,106,255,0.3); transform: translateY(-3px); }
-.skill-icon { font-size: 26px; margin-bottom: 14px; }
-.skill-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: var(--text);
-}
-.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag {
-  background: var(--tag-bg);
-  color: var(--tag-color);
-  border-radius: 6px;
-  padding: 3px 9px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+.skill-icon.bi{background:#eff6ff;}
+.skill-icon.data{background:#f0fdf4;}
+.skill-icon.code{background:#fff7ed;}
+.skill-icon.cloud{background:#faf5ff;}
+.skill-name{font-size:14px;font-weight:500;margin-bottom:10px;color:var(--text);}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{
+  background:var(--surface);
+  color:var(--muted);
+  border-radius:100px;
+  padding:2px 9px;
+  font-size:11px;
+  font-weight:400;
+  border:1px solid var(--border);
 }
 
 /* ── PROJECTS ── */
-.projects-section {
-  padding: 100px 60px;
-  max-width: 1100px;
-  margin: 0 auto;
+.projects-section{
+  padding:0 64px 96px;
+  max-width:1200px;
+  margin:0 auto;
 }
-.projects-grid { display: grid; gap: 24px; }
-.project-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 36px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 24px;
-  align-items: start;
-  transition: all 0.25s;
-  position: relative;
-  overflow: hidden;
+.projects-grid{display:grid;gap:20px;}
+.project-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:36px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:32px;
+  align-items:start;
+  transition:all 0.25s;
 }
-.project-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  opacity: 0;
-  transition: opacity 0.25s;
-  pointer-events: none;
+.project-card:hover{border-color:var(--border-strong);box-shadow:0 8px 32px rgba(0,0,0,0.06);transform:translateY(-2px);}
+.project-card.featured{border-left:3px solid var(--accent);}
+.featured-badge{
+  display:inline-block;
+  background:var(--accent-light);
+  border:1px solid var(--accent-border);
+  color:var(--accent);
+  border-radius:100px;
+  padding:3px 12px;
+  font-size:11px;
+  font-weight:500;
+  margin-bottom:12px;
+  letter-spacing:0.04em;
 }
-.project-card.featured::after { background: radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(124,106,255,0.04), transparent 40%); }
-.project-card:hover { border-color: rgba(124,106,255,0.25); transform: translateY(-2px); }
-.project-card:hover::after { opacity: 1; }
-.project-number {
-  font-family: 'Syne', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  margin-bottom: 12px;
+.project-number{
+  font-size:11px;font-weight:500;
+  color:var(--subtle);
+  letter-spacing:0.1em;
+  margin-bottom:10px;
+  text-transform:uppercase;
 }
-.project-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--text);
-  letter-spacing: -0.5px;
+.project-title{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;
+  margin-bottom:10px;
+  color:var(--text);
+  letter-spacing:-0.5px;
+  line-height:1.2;
 }
-.project-desc { color: var(--muted); font-size: 14px; line-height: 1.8; margin-bottom: 20px; max-width: 560px; }
-.project-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-.tool-tag {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  border-radius: 6px;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 500;
+.project-desc{color:var(--muted);font-size:14px;line-height:1.85;margin-bottom:18px;max-width:560px;font-weight:300;}
+.project-tools{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
+.tool-tag{
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--muted);
+  border-radius:100px;
+  padding:3px 11px;
+  font-size:12px;
+  font-weight:400;
 }
-.project-highlights { display: flex; flex-direction: column; gap: 6px; }
-.highlight {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--muted);
+.project-highlights{display:flex;flex-direction:column;gap:6px;}
+.highlight{
+  display:flex;align-items:flex-start;
+  gap:10px;font-size:13px;color:var(--muted);
+  line-height:1.6;
 }
-.highlight::before {
-  content: '';
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--accent3);
-  flex-shrink: 0;
+.highlight::before{
+  content:'';
+  width:4px;height:4px;border-radius:50%;
+  background:var(--accent);
+  flex-shrink:0;margin-top:7px;
 }
-.project-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-.project-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  transition: all 0.2s;
-  white-space: nowrap;
-  background: var(--surface);
+.project-links{display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
+.project-link{
+  display:flex;align-items:center;gap:8px;
+  color:var(--muted);text-decoration:none;
+  font-size:13px;font-weight:500;
+  padding:9px 16px;
+  border:1px solid var(--border);
+  border-radius:100px;
+  transition:all 0.2s;
+  white-space:nowrap;
+  background:var(--bg);
 }
-.project-link:hover { color: var(--text); border-color: rgba(124,106,255,0.4); background: var(--tag-bg); }
-.featured-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: linear-gradient(135deg, rgba(124,106,255,0.2), rgba(255,107,157,0.1));
-  border: 1px solid rgba(124,106,255,0.3);
-  border-radius: 100px;
-  padding: 4px 12px;
-  font-size: 11px;
-  color: var(--tag-color);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  margin-bottom: 12px;
-  display: inline-block;
+.project-link:hover{color:var(--text);border-color:var(--border-strong);background:var(--card);}
+.project-link.primary-link{
+  background:var(--accent);
+  color:#fff;
+  border-color:var(--accent);
 }
-
-/* ── ADD PROJECT CTA ── */
-.add-project-card {
-  background: transparent;
-  border: 1px dashed rgba(124,106,255,0.25);
-  border-radius: 18px;
-  padding: 40px;
-  text-align: center;
-  transition: all 0.25s;
-  cursor: pointer;
+.project-link.primary-link:hover{background:#1648c7;}
+.coming-soon-card{
+  background:var(--surface);
+  border:1px dashed var(--border-strong);
+  border-radius:20px;
+  padding:36px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:32px;
+  align-items:start;
+  opacity:0.75;
 }
-.add-project-card:hover { border-color: rgba(124,106,255,0.5); background: var(--tag-bg); }
-.add-icon { font-size: 32px; margin-bottom: 12px; }
-.add-text { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
-.add-sub { font-size: 13px; color: var(--muted); opacity: 0.6; }
 
 /* ── EXPERIENCE ── */
-.experience-section {
-  padding: 100px 60px;
-  max-width: 1100px;
-  margin: 0 auto;
+.experience-section{
+  padding:0 64px 96px;
+  max-width:1200px;
+  margin:0 auto;
 }
-.timeline { position: relative; padding-left: 32px; }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 8px; bottom: 8px;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
+.exp-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:40px;
 }
-.timeline-item { position: relative; margin-bottom: 48px; }
-.timeline-dot {
-  position: absolute;
-  left: -38px; top: 6px;
-  width: 12px; height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 16px rgba(124,106,255,0.6);
+.exp-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:28px;
+  gap:20px;
 }
-.timeline-period {
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+.exp-company-badge{
+  width:48px;height:48px;
+  border-radius:12px;
+  background:var(--accent-light);
+  border:1px solid var(--accent-border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:700;color:var(--accent);
+  flex-shrink:0;
 }
-.timeline-role {
-  font-family: 'Syne', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 4px;
-  color: var(--text);
+.exp-title-block{flex:1;}
+.exp-role{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;
+  color:var(--text);margin-bottom:4px;
 }
-.timeline-company { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
-.timeline-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.timeline-points li {
-  font-size: 14px;
-  color: var(--muted);
-  padding-left: 16px;
-  position: relative;
-  line-height: 1.7;
+.exp-company{font-size:14px;color:var(--muted);font-weight:300;}
+.exp-period{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:100px;
+  padding:5px 14px;
+  font-size:12px;
+  color:var(--muted);
+  white-space:nowrap;
+  height:fit-content;
 }
-.timeline-points li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-size: 12px;
+.exp-divider{border:none;border-top:1px solid var(--border);margin-bottom:24px;}
+.exp-points{display:flex;flex-direction:column;gap:10px;list-style:none;}
+.exp-points li{
+  font-size:14px;color:var(--muted);
+  padding-left:20px;position:relative;
+  line-height:1.75;font-weight:300;
 }
+.exp-points li::before{
+  content:'→';
+  position:absolute;left:0;
+  color:var(--accent);font-size:12px;
+  top:3px;
+}
+.exp-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
 
 /* ── CONTACT ── */
-.contact-section {
-  padding: 100px 60px 140px;
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
+.contact-section{
+  padding:0 64px 120px;
+  max-width:1200px;
+  margin:0 auto;
 }
-.contact-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 64px;
-  position: relative;
-  overflow: hidden;
+.contact-card{
+  background:var(--text);
+  border-radius:24px;
+  padding:72px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
 }
-.contact-card::before {
-  content: '';
-  position: absolute;
-  top: -60px; left: 50%; transform: translateX(-50%);
-  width: 400px; height: 200px;
-  background: radial-gradient(ellipse, rgba(124,106,255,0.15), transparent 70%);
-  pointer-events: none;
+.contact-card::before{
+  content:'';
+  position:absolute;
+  top:-80px;left:50%;transform:translateX(-50%);
+  width:400px;height:300px;
+  background:radial-gradient(ellipse,rgba(255,255,255,0.06),transparent 70%);
+  pointer-events:none;
 }
-.contact-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(28px, 4vw, 46px);
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 16px;
+.contact-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,4vw,48px);
+  font-weight:700;
+  letter-spacing:-1px;
+  margin-bottom:14px;
+  color:#fff;
+  line-height:1.1;
 }
-.contact-sub { color: var(--muted); font-size: 16px; margin-bottom: 40px; }
-.contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-.contact-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  transition: all 0.2s;
-  border: 1px solid var(--border);
-  color: var(--text);
-  background: var(--surface);
+.contact-title em{font-style:italic;color:#93c5fd;}
+.contact-sub{color:rgba(255,255,255,0.55);font-size:15px;margin-bottom:40px;font-weight:300;}
+.contact-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.contact-link{
+  display:flex;align-items:center;gap:9px;
+  padding:13px 22px;
+  border-radius:100px;
+  text-decoration:none;
+  font-weight:500;font-size:14px;
+  transition:all 0.2s;
+  border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.85);
+  background:rgba(255,255,255,0.07);
 }
-.contact-link:hover { border-color: rgba(124,106,255,0.4); background: var(--tag-bg); transform: translateY(-2px); }
+.contact-link:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.3);transform:translateY(-2px);}
+.contact-link.primary{background:#fff;color:var(--text);border-color:#fff;}
+.contact-link.primary:hover{background:#f0f0f0;}
 
 /* ── FOOTER ── */
-footer {
-  text-align: center;
-  padding: 24px;
-  font-size: 12px;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  position: relative;
-  z-index: 1;
+footer{
+  text-align:center;padding:24px 64px;
+  font-size:12px;color:var(--subtle);
+  border-top:1px solid var(--border);
+  position:relative;z-index:1;
+  display:flex;justify-content:space-between;align-items:center;
 }
 
 /* ── ANIMATIONS ── */
-.fade-in {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.fade-in.visible { opacity: 1; transform: none; }
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade-in.visible{opacity:1;transform:none;}
 
-@media (max-width: 768px) {
-  nav { padding: 16px 24px; }
-  .nav-links { display: none; }
-  .hero, .skills-section, .projects-section, .experience-section, .contact-section {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-  .project-card { grid-template-columns: 1fr; }
-  .project-links { flex-direction: row; align-items: flex-start; }
-  .hero-stats { gap: 24px; }
-  .contact-card { padding: 40px 24px; }
+@media(max-width:900px){
+  nav{padding:16px 24px;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;padding:100px 24px 60px;gap:40px;}
+  .hero-right{display:none;}
+  .skills-section,.projects-section,.experience-section,.contact-section,.divider{padding-left:24px;padding-right:24px;}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
+  .project-card,.coming-soon-card{grid-template-columns:1fr;}
+  .project-links{flex-direction:row;align-items:flex-start;}
+  .contact-card{padding:40px 24px;}
+  footer{flex-direction:column;gap:8px;}
 }
 </style>
 </head>
 <body>
 
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">S<span>.</span>AR</a>
+  <a href="#" class="nav-logo">Samhitha<em>.</em></a>
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="mailto:samhithaaram11@gmail.com"
+        onclick="window.open('https://mail.google.com/mail/?view=cm&to=samhithaaram11@gmail.com&su=Data Analyst Opportunity','_blank');return false;"
+        class="nav-cta">Hire Me</a></li>
   </ul>
-  <a href="mailto:samhithaaram11@gmail.com" onclick="window.open('https://mail.google.com/mail/?view=cm&to=samhithaaram11@gmail.com&su=Data Analyst Opportunity', '_blank'); return false;" class="btn-primary" style="padding:10px 20px;font-size:13px;">Hire Me</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Available for new opportunities</div>
-    <h1>
-      <span class="name">Samhitha A Ram</span>
-      <span class="role">Data Analyst</span>
-    </h1>
+  <div class="hero-left fade-in">
+    <div class="hero-eyebrow">Data Analyst · Bengaluru</div>
+    <h1>Turning data<br/>into <em>decisions</em><br/>that matter.</h1>
     <p class="hero-sub">
-      Turning raw data into <strong>decisions that matter</strong>. 
-      3+ years building enterprise dashboards, ETL pipelines, and analytics solutions 
+      3+ years building enterprise dashboards, ETL pipelines, and analytics solutions
       for global technology clients across <strong>6 international markets</strong>.
     </p>
     <div class="hero-ctas">
       <a href="#projects" class="btn-primary">View My Work</a>
-      <a href="mailto:samhithaaram11@gmail.com" onclick="window.open('https://mail.google.com/mail/?view=cm&to=samhithaaram11@gmail.com&su=Data Analyst Opportunity', '_blank'); return false;" class="btn-outline">Get In Touch</a>
+      <a href="mailto:samhithaaram11@gmail.com"
+         onclick="window.open('https://mail.google.com/mail/?view=cm&to=samhithaaram11@gmail.com&su=Data Analyst Opportunity','_blank');return false;"
+         class="btn-outline">Get In Touch</a>
     </div>
     <div class="hero-stats">
-      <div>
+      <div class="stat">
         <div class="stat-num">3+</div>
-        <div class="stat-label">Years Experience</div>
+        <div class="stat-label">Years Exp.</div>
       </div>
-      <div>
-        <div class="stat-num">20+</div>
-        <div class="stat-label">Stakeholders Served</div>
-      </div>
-      <div>
+      <div class="stat">
         <div class="stat-num">85%</div>
-        <div class="stat-label">Time Saved via Automation</div>
+        <div class="stat-label">Time Saved</div>
       </div>
-      <div>
-        <div class="stat-num">6</div>
-        <div class="stat-label">Global Markets</div>
+      <div class="stat">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Stakeholders</div>
       </div>
+    </div>
+  </div>
+  <div class="hero-right fade-in">
+    <div class="profile-card">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <div class="profile-avatar">SA</div>
+        <div>
+          <div class="profile-name">Samhitha A Ram</div>
+          <div class="profile-title">Data Analyst / Power BI Developer</div>
+        </div>
+      </div>
+      <div class="profile-tags">
+        <span class="ptag">Power BI</span>
+        <span class="ptag">SQL</span>
+        <span class="ptag">Python</span>
+        <span class="ptag">ETL Pipelines</span>
+        <span class="ptag">Streamlit</span>
+        <span class="ptag">SQLite</span>
+      </div>
+    </div>
+    <div class="mini-cards">
+      <div class="mini-card">
+        <div class="mini-card-icon">📊</div>
+        <div class="mini-card-label">Dashboards Built</div>
+        <div class="mini-card-val">3 Enterprise</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-icon">⚡</div>
+        <div class="mini-card-label">Pipeline Speed</div>
+        <div class="mini-card-val">4hr → 30min</div>
+      </div>
+    </div>
+    <div class="availability-bar">
+      <div class="avail-dot"></div>
+      Available for new opportunities — Bengaluru & Remote
     </div>
   </div>
 </section>
 
+<div class="divider"><hr/></div>
+
 <!-- SKILLS -->
 <section class="skills-section fade-in" id="skills">
-  <div class="section-label">What I work with</div>
+  <div class="section-eyebrow">What I work with</div>
   <h2 class="section-title">Skills & Tools</h2>
-  <p class="section-sub">Full-stack analytics — from raw data to polished dashboards.</p>
+  <p class="section-sub">Full-stack analytics — from raw data pipelines to polished executive dashboards.</p>
   <div class="skills-grid">
-    <div class="skill-card bi">
-      <div class="skill-icon">📊</div>
+    <div class="skill-card">
+      <div class="skill-icon bi">📊</div>
       <div class="skill-name">Business Intelligence</div>
       <div class="skill-tags">
         <span class="tag">Power BI</span><span class="tag">DAX</span>
-        <span class="tag">Power Query</span><span class="tag">KPI Dev</span>
-        <span class="tag">Tableau</span>
+        <span class="tag">Power Query</span><span class="tag">KPI Dev</span><span class="tag">Tableau</span>
       </div>
     </div>
-    <div class="skill-card data">
-      <div class="skill-icon">🗄️</div>
+    <div class="skill-card">
+      <div class="skill-icon data">🗄️</div>
       <div class="skill-name">Data Engineering</div>
       <div class="skill-tags">
         <span class="tag">SQL</span><span class="tag">ETL</span>
@@ -594,8 +687,8 @@ footer {
         <span class="tag">Window Fns</span><span class="tag">CTEs</span>
       </div>
     </div>
-    <div class="skill-card code">
-      <div class="skill-icon">🐍</div>
+    <div class="skill-card">
+      <div class="skill-icon code">🐍</div>
       <div class="skill-name">Programming</div>
       <div class="skill-tags">
         <span class="tag">Python</span><span class="tag">Pandas</span>
@@ -603,169 +696,164 @@ footer {
         <span class="tag">Streamlit</span><span class="tag">Scikit-learn</span>
       </div>
     </div>
-    <div class="skill-card cloud">
-      <div class="skill-icon">☁️</div>
+    <div class="skill-card">
+      <div class="skill-icon cloud">☁️</div>
       <div class="skill-name">Cloud & DevOps</div>
       <div class="skill-tags">
         <span class="tag">Azure</span><span class="tag">Git</span>
-        <span class="tag">Jenkins CI/CD</span><span class="tag">REST APIs</span>
-        <span class="tag">Excel VBA</span>
+        <span class="tag">Jenkins CI/CD</span><span class="tag">REST APIs</span><span class="tag">Excel VBA</span>
       </div>
     </div>
   </div>
 </section>
 
+<div class="divider"><hr/></div>
+
 <!-- PROJECTS -->
 <section class="projects-section fade-in" id="projects">
-  <div class="section-label">What I've built</div>
-  <h2 class="section-title">Projects</h2>
-  <p class="section-sub">Personal projects showcasing end-to-end analytics skills.</p>
-
+  <div style="margin-bottom:52px;padding-top:96px;">
+    <div class="section-eyebrow">What I've built</div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">Personal projects showcasing end-to-end analytics — from data to deployed app.</p>
+  </div>
   <div class="projects-grid">
 
-    <!-- Project 1: Food Tracker -->
     <div class="project-card featured">
       <div>
         <div class="featured-badge">★ Featured Project</div>
-        <div class="project-number">01 / DATA ANALYTICS + WEB APP</div>
+        <div class="project-number">01 / Data Analytics + Web App</div>
         <div class="project-title">Food Spend & Health Intelligence Tracker</div>
         <p class="project-desc">
-          An end-to-end analytics application that ingests Zomato/Swiggy/Blinkit 
-          order history, classifies food as healthy/moderate/unhealthy, and generates 
-          personalised spend insights. Built with a normalised SQLite database, 
-          interactive Streamlit dashboard, and Power BI report.
+          An end-to-end analytics application that ingests Zomato/Swiggy/Blinkit order history,
+          classifies food as healthy/moderate/unhealthy, and generates personalised spend insights.
+          Built with a normalised SQLite database, interactive Streamlit dashboard, and Power BI report.
         </p>
         <div class="project-tools">
-          <span class="tool-tag">Python</span>
-          <span class="tool-tag">Pandas</span>
-          <span class="tool-tag">SQLite</span>
-          <span class="tool-tag">Streamlit</span>
-          <span class="tool-tag">Power BI</span>
-          <span class="tool-tag">Matplotlib</span>
+          <span class="tool-tag">Python</span><span class="tool-tag">Pandas</span>
+          <span class="tool-tag">SQLite</span><span class="tool-tag">Streamlit</span>
+          <span class="tool-tag">Power BI</span><span class="tool-tag">Matplotlib</span>
         </div>
         <div class="project-highlights">
           <div class="highlight">Normalised 3-table SQLite database with FK relationships</div>
           <div class="highlight">Health classification engine — Healthy / Moderate / Unhealthy</div>
-          <div class="highlight">Interactive filters by platform, date range, meal time</div>
-          <div class="highlight">Smart insights — personalised spend reduction tips</div>
+          <div class="highlight">Interactive filters by platform, date range and meal time</div>
+          <div class="highlight">Smart insights with personalised spend reduction recommendations</div>
         </div>
       </div>
       <div class="project-links">
-        <a href="https://github.com/samcelo1714/Food_Tracker" class="project-link" target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
-        </a>
-        <a href="https://foodtracker-3lrjvhq625dnkpqjvt8omw.streamlit.app/" class="project-link" target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        <a href="https://foodtracker-3lrjvhq625dnkpqjvt8omw.streamlit.app/" class="project-link primary-link" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Live Demo
+        </a>
+        <a href="https://github.com/samcelo1714/Food_Tracker" class="project-link" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
         </a>
       </div>
     </div>
 
-    <!-- Placeholder: Next project -->
-    <div class="project-card" id="project2-slot">
+    <div class="coming-soon-card">
       <div>
-        <div class="project-number">02 / COMING SOON</div>
+        <div class="project-number">02 / Coming Soon</div>
         <div class="project-title">Personal Finance Dashboard</div>
         <p class="project-desc">
-          UPI/bank statement analytics — expense categorisation, savings trends, 
-          and intelligent budget recommendations. Designed for freelancing clients 
+          UPI/bank statement analytics — expense categorisation, savings trends,
+          and intelligent budget recommendations. Designed for freelancing clients
           in fintech and personal finance.
         </p>
         <div class="project-tools">
-          <span class="tool-tag">Python</span>
-          <span class="tool-tag">SQL</span>
-          <span class="tool-tag">Power BI</span>
-          <span class="tool-tag">Streamlit</span>
+          <span class="tool-tag">Python</span><span class="tool-tag">SQL</span>
+          <span class="tool-tag">Power BI</span><span class="tool-tag">Streamlit</span>
         </div>
         <div class="project-highlights">
           <div class="highlight">In progress — deploying soon</div>
         </div>
       </div>
       <div class="project-links">
-        <a href="#" class="project-link" style="opacity:0.4;pointer-events:none;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          In Progress
-        </a>
+        <span class="project-link" style="opacity:0.4;pointer-events:none;">In Progress</span>
       </div>
     </div>
 
-    <!-- Add project card -->
-    <div class="add-project-card">
-      <div class="add-icon">+</div>
-      <div class="add-text">Your next project goes here</div>
-      <div class="add-sub">Follow the guide below to add more projects</div>
-    </div>
-
   </div>
 </section>
+
+<div class="divider"><hr/></div>
 
 <!-- EXPERIENCE -->
 <section class="experience-section fade-in" id="experience">
-  <div class="section-label">Where I've worked</div>
-  <h2 class="section-title">Experience</h2>
-  <p class="section-sub" style="margin-bottom:48px;">Building real-world analytics solutions since 2022.</p>
-
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-period">April 2022 — Present</div>
-      <div class="timeline-role">Data Analyst / Power BI Developer</div>
-      <div class="timeline-company">Celominds Solutions Pvt. Ltd., Bengaluru</div>
-      <ul class="timeline-points">
-        <li>Designed 3 enterprise Power BI dashboards serving 20+ stakeholders across engineering, product & client teams tracking performance for a global consumer electronics client in 6 markets</li>
-        <li>Built automated ETL pipeline using Python + SQL reducing manual data prep by 85% — from ~4 hours to 30 minutes per release cycle</li>
-        <li>Implemented threshold-based monitoring that proactively identified 15+ critical performance degradations before customer impact</li>
-        <li>Migrated reporting from static Excel to live database connections — real-time data freshness for all stakeholders</li>
-        <li>Developed SQL queries with CTEs & window functions aggregating metrics across 30+ test scenarios</li>
-      </ul>
+  <div style="margin-bottom:52px;padding-top:96px;">
+    <div class="section-eyebrow">Where I've worked</div>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">Building real-world analytics solutions since 2022.</p>
+  </div>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-company-badge">C</div>
+      <div class="exp-title-block">
+        <div class="exp-role">Data Analyst / Power BI Developer</div>
+        <div class="exp-company">Celominds Solutions Pvt. Ltd. · Bengaluru</div>
+      </div>
+      <div class="exp-period">April 2022 — Present</div>
+    </div>
+    <hr class="exp-divider"/>
+    <ul class="exp-points">
+      <li>Designed 3 enterprise Power BI dashboards serving 20+ stakeholders across engineering, product & client teams tracking CPU, memory, and system performance for a global consumer electronics client in 6 markets</li>
+      <li>Built automated ETL pipeline using Python + SQL reducing manual data prep by 85% — from ~4 hours to 30 minutes per release cycle, eliminating data entry errors entirely</li>
+      <li>Implemented threshold-based monitoring that proactively identified 15+ critical performance degradations before customer impact — results presented to client leadership in quarterly reviews</li>
+      <li>Migrated reporting from static Excel to live database connections — real-time data freshness replacing weekly batch updates</li>
+      <li>Developed SQL queries with CTEs & window functions aggregating metrics across 30+ test scenarios (boot time, navigation latency, content load speeds)</li>
+      <li>Created Python automation scripts integrated into Jenkins CI/CD pipelines to standardise device telemetry across 6 country-specific hardware variants</li>
+    </ul>
+    <div class="exp-tags">
+      <span class="tag">Power BI</span><span class="tag">Python</span><span class="tag">SQL</span>
+      <span class="tag">ETL</span><span class="tag">Jenkins</span><span class="tag">Azure</span>
+      <span class="tag">DAX</span><span class="tag">REST APIs</span>
     </div>
   </div>
 </section>
 
+<div class="divider"><hr/></div>
+
 <!-- CONTACT -->
 <section class="contact-section fade-in" id="contact">
-  <div class="contact-card">
-    <div class="contact-title">Let's work together</div>
-    <p class="contact-sub">Open to Data Analyst roles and freelance projects.<br/>Based in Bengaluru · Available immediately.</p>
-    <div class="contact-links">
-      <a href="mailto:samhithaaram11@gmail.com" onclick="window.open('https://mail.google.com/mail/?view=cm&to=samhithaaram11@gmail.com&su=Data Analyst Opportunity', '_blank'); return false;" class="contact-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        samhithaaram11@gmail.com
-      </a>
-      <a href="https://www.linkedin.com/in/samhitha-a-ram-572977179" class="contact-link" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://github.com/samcelo1714/" class="contact-link" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="tel:+919620614054" class="contact-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        +91 96206 14054
-      </a>
+  <div style="padding-top:96px;">
+    <div class="contact-card">
+      <div class="contact-title">Let's work<br/><em>together</em></div>
+      <p class="contact-sub">Open to Data Analyst roles and freelance projects · Based in Bengaluru · Available immediately</p>
+      <div class="contact-links">
+        <a href="mailto:samhithaaram11@gmail.com"
+           onclick="window.open('https://mail.google.com/mail/?view=cm&to=samhithaaram11@gmail.com&su=Data Analyst Opportunity','_blank');return false;"
+           class="contact-link primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          samhithaaram11@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/samhitha-a-ram-572977179" class="contact-link" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/samcelo1714/" class="contact-link" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="tel:+919620614054" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 96206 14054
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>Designed & built by Samhitha A Ram · Bengaluru, India</p>
+  <span>Designed & built by Samhitha A Ram · Bengaluru, India</span>
+  <span style="color:var(--border-strong);">© 2025</span>
 </footer>
 
 <script>
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-document.querySelectorAll('.project-card.featured').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-  });
-});
 </script>
 </body>
 </html>
