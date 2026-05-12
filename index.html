@@ -4,232 +4,800 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Samhitha A Ram — Data Analyst</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-
 <style>
-:root{
-  --bg:#faf8f4;--surface:#f3f0ea;--card:#fff;
-  --border:rgba(0,0,0,0.08);--border-strong:rgba(0,0,0,0.14);
-  --accent:#1a56db;--accent-light:#eff6ff;--accent-border:#bfdbfe;
-  --text:#1a1714;--muted:#6b6760;--subtle:#9c9891;--ink:#2d2a25;
-  --green:#166534;--green-light:#f0fdf4;
+:root {
+  --bg: #faf8f4;
+  --surface: #f3f0ea;
+  --card: #ffffff;
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.14);
+  --accent: #1a56db;
+  --accent-light: #eff6ff;
+  --accent-border: #bfdbfe;
+  --text: #1a1714;
+  --muted: #6b6760;
+  --subtle: #9c9891;
+  --ink: #2d2a25;
+  --warm: #c2410c;
+  --warm-light: #fff7ed;
+  --green: #166534;
+  --green-light: #f0fdf4;
+  --amber: #92400e;
+  --amber-light: #fffbeb;
+  --amber-border: #fde68a;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
 body{
-  font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);
-  line-height:1.7;font-size:16px;overflow-x:hidden;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
 }
 
-/* NAV */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,0.02) 1px,transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ── NAV ── */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:18px 64px;display:flex;align-items:center;justify-content:space-between;
-  background:rgba(250,248,244,.9);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border)
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  padding:18px 64px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(250,248,244,0.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
 }
 .nav-logo{
-  font-family:'Playfair Display',serif;font-weight:700;font-size:20px;
-  text-decoration:none;color:var(--text)
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  font-size:20px;
+  color:var(--text);
+  text-decoration:none;
+  letter-spacing:-0.5px;
 }
-.nav-logo em{color:var(--accent)}
-.nav-links{display:flex;gap:32px;list-style:none}
+.nav-logo em{color:var(--accent);font-style:italic;}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
 .nav-links a{
-  text-decoration:none;font-size:14px;color:var(--muted);
+  color:var(--muted);
+  text-decoration:none;
+  font-size:14px;
+  font-weight:400;
+  letter-spacing:0.01em;
+  transition:color 0.2s;
 }
+.nav-links a:hover{color:var(--text);}
 .nav-cta{
-  background:var(--text);color:var(--bg)!important;
-  padding:8px 22px;border-radius:100px;font-weight:500;
+  background:var(--text);
+  color:var(--bg)!important;
+  padding:9px 22px!important;
+  border-radius:100px!important;
+  font-weight:500!important;
+  font-size:13px!important;
+  transition:all 0.2s!important;
 }
+.nav-cta:hover{background:var(--ink)!important;transform:translateY(-1px);}
 
-/* HERO */
+section{position:relative;z-index:1;}
+
+/* ── HERO ── */
 .hero{
-  min-height:100vh;max-width:1200px;margin:auto;
-  display:grid;grid-template-columns:1fr 1fr;
-  align-items:center;padding:120px 64px 80px;gap:80px
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:120px 64px 80px;
+  max-width:1200px;
+  margin:0 auto;
+  gap:80px;
 }
-.hero-eyebrow{font-size:12px;color:var(--accent);letter-spacing:.14em;margin-bottom:24px}
+.hero-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:500;
+  color:var(--accent);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);}
 .hero h1{
   font-family:'Playfair Display',serif;
   font-size:clamp(38px,4.5vw,62px);
-  font-weight:800;line-height:1.1
+  font-weight:800;
+  line-height:1.08;
+  letter-spacing:-1.5px;
+  margin-bottom:8px;
+  color:var(--text);
 }
-.hero h1 em{color:var(--accent);font-style:italic}
-.hero-sub{color:var(--muted);max-width:480px;margin:26px 0 36px}
-.hero-ctas{display:flex;gap:12px;margin-bottom:48px}
-.btn-primary,.btn-outline{
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero-sub{
+  font-size:16px;
+  color:var(--muted);
+  max-width:440px;
+  margin:20px 0 36px;
+  font-weight:300;
+  line-height:1.85;
+}
+.hero-sub strong{color:var(--text);font-weight:500;}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:56px;}
+.btn-primary{
+  background:var(--accent);color:#fff;
   padding:13px 26px;border-radius:100px;
-  text-decoration:none;font-size:14px
+  text-decoration:none;font-weight:500;font-size:14px;
+  transition:all 0.2s;border:none;cursor:pointer;
 }
-.btn-primary{background:var(--accent);color:#fff}
-.btn-outline{border:1px solid var(--border-strong);color:var(--text)}
-
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border)}
-.stat{text-align:center;padding:18px;background:var(--card)}
+.btn-primary:hover{background:#1648c7;transform:translateY(-2px);}
+.btn-outline{
+  background:transparent;color:var(--text);
+  padding:13px 26px;border-radius:100px;
+  text-decoration:none;font-weight:400;font-size:14px;
+  border:1px solid var(--border-strong);transition:all 0.2s;
+}
+.btn-outline:hover{border-color:var(--text);background:rgba(0,0,0,0.03);}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:14px;overflow:hidden;
+}
+.stat{background:var(--card);padding:20px 14px;text-align:center;}
 .stat-num{
-  font-family:'Playfair Display',serif;font-size:26px;font-weight:700
+  font-family:'Playfair Display',serif;
+  font-size:26px;font-weight:700;
+  color:var(--text);line-height:1;margin-bottom:4px;
 }
-.stat-label{font-size:11px;color:var(--subtle);letter-spacing:.08em}
+.stat-label{font-size:10px;color:var(--subtle);letter-spacing:0.06em;text-transform:uppercase;}
 
-/* SECTIONS */
-section{max-width:1200px;margin:auto;padding:96px 64px}
-.section-eyebrow{font-size:11px;color:var(--accent);letter-spacing:.14em}
-.section-title{
-  font-family:'Playfair Display',serif;font-size:36px;margin:12px 0
-}
-.section-sub{color:var(--muted);margin-bottom:52px}
-
-/* PROJECTS */
-.projects-grid{display:grid;gap:20px}
-.project-card{
+/* ── HERO RIGHT ── */
+.hero-right{display:flex;flex-direction:column;gap:12px;}
+.profile-card{
   background:var(--card);border:1px solid var(--border);
-  border-radius:20px;padding:36px;display:grid;
-  grid-template-columns:1fr auto;gap:32px
+  border-radius:20px;padding:28px;position:relative;overflow:hidden;
 }
-.project-card.featured{border-left:3px solid var(--accent)}
+.profile-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent),#60a5fa);
+}
+.profile-avatar{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#60a5fa);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:22px;font-weight:700;
+  color:#fff;margin-bottom:16px;flex-shrink:0;
+}
+.profile-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.profile-title{font-size:13px;color:var(--accent);font-weight:500;margin-bottom:16px;}
+.profile-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.ptag{
+  background:var(--accent-light);color:var(--accent);
+  border:1px solid var(--accent-border);border-radius:100px;
+  padding:3px 10px;font-size:11px;font-weight:500;
+}
+.mini-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.mini-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;}
+.mini-card-icon{font-size:20px;margin-bottom:8px;}
+.mini-card-label{font-size:11px;color:var(--subtle);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.mini-card-val{font-size:18px;font-weight:500;color:var(--text);font-family:'Playfair Display',serif;}
+.availability-bar{
+  background:var(--green-light);border:1px solid #bbf7d0;border-radius:12px;
+  padding:14px 20px;display:flex;align-items:center;gap:10px;
+  font-size:13px;color:var(--green);font-weight:500;
+}
+.avail-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--green);animation:pulse 2s infinite;flex-shrink:0;
+}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(22,101,52,0.4);}50%{opacity:0.7;box-shadow:0 0 0 6px rgba(22,101,52,0);}}
+
+/* ── DIVIDER ── */
+.divider{max-width:1200px;margin:0 auto;padding:0 64px;position:relative;z-index:1;}
+.divider hr{border:none;border-top:1px solid var(--border);}
+
+/* ── ABOUT ── */
+.about-section{
+  padding:96px 64px;
+  max-width:1200px;
+  margin:0 auto;
+}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:center;
+}
+.about-text p{
+  font-size:15px;color:var(--muted);line-height:1.9;font-weight:300;margin-bottom:16px;
+}
+.about-text p:last-child{margin-bottom:0;}
+.about-text strong{color:var(--text);font-weight:500;}
+.about-values{display:flex;flex-direction:column;gap:12px;}
+.value-item{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:18px 20px;display:flex;align-items:flex-start;gap:14px;
+}
+.value-icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.value-icon.blue{background:var(--accent-light);}
+.value-icon.green{background:var(--green-light);}
+.value-icon.warm{background:var(--warm-light);}
+.value-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px;}
+.value-desc{font-size:12px;color:var(--muted);font-weight:300;line-height:1.5;}
+
+/* ── SKILLS ── */
+.skills-section{padding:0 64px 96px;max-width:1200px;margin:0 auto;}
+.section-eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:10px;display:flex;align-items:center;gap:8px;
+}
+.section-eyebrow::before{content:'';width:20px;height:1px;background:var(--accent);}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,3.5vw,40px);font-weight:700;
+  letter-spacing:-1px;margin-bottom:12px;color:var(--text);line-height:1.1;
+}
+.section-sub{color:var(--muted);font-size:15px;max-width:480px;margin-bottom:52px;font-weight:300;}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.skill-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:22px;transition:all 0.25s;position:relative;
+}
+.skill-card:hover{border-color:var(--border-strong);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+.skill-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;margin-bottom:14px;
+}
+.skill-icon.bi{background:#eff6ff;}
+.skill-icon.data{background:#f0fdf4;}
+.skill-icon.code{background:#fff7ed;}
+.skill-icon.cloud{background:#faf5ff;}
+.skill-name{font-size:14px;font-weight:500;margin-bottom:10px;color:var(--text);}
+.skill-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{
+  background:var(--surface);color:var(--muted);
+  border-radius:100px;padding:2px 9px;font-size:11px;
+  font-weight:400;border:1px solid var(--border);
+}
+
+/* ── PROJECTS ── */
+.projects-section{padding:0 64px 96px;max-width:1200px;margin:0 auto;}
+.projects-grid{display:grid;gap:20px;}
+.project-card{
+  background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:36px;display:grid;grid-template-columns:1fr auto;
+  gap:32px;align-items:start;transition:all 0.25s;
+}
+.project-card:hover{border-color:var(--border-strong);box-shadow:0 8px 32px rgba(0,0,0,0.06);transform:translateY(-2px);}
+.project-card.featured{border-left:3px solid var(--accent);}
+.featured-badge{
+  display:inline-block;background:var(--accent-light);
+  border:1px solid var(--accent-border);color:var(--accent);
+  border-radius:100px;padding:3px 12px;font-size:11px;
+  font-weight:500;margin-bottom:12px;letter-spacing:0.04em;
+}
+.project-number{font-size:11px;font-weight:500;color:var(--subtle);letter-spacing:0.1em;margin-bottom:10px;text-transform:uppercase;}
 .project-title{
-  font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px
+  font-family:'Playfair Display',serif;font-size:22px;font-weight:700;
+  margin-bottom:10px;color:var(--text);letter-spacing:-0.5px;line-height:1.2;
 }
-.project-desc{color:var(--muted);margin-bottom:18px}
-.project-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.project-desc{color:var(--muted);font-size:14px;line-height:1.85;margin-bottom:18px;max-width:560px;font-weight:300;}
+.project-tools{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
 .tool-tag{
   background:var(--surface);border:1px solid var(--border);
-  border-radius:100px;padding:3px 10px;font-size:12px
+  color:var(--muted);border-radius:100px;padding:3px 11px;font-size:12px;font-weight:400;
 }
-.highlight{font-size:13px;color:var(--muted);margin-bottom:6px}
-.project-links{display:flex;flex-direction:column;gap:10px}
+.project-highlights{display:flex;flex-direction:column;gap:6px;}
+.highlight{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted);line-height:1.6;}
+.highlight::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;margin-top:7px;
+}
+.project-links{display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
 .project-link{
-  border:1px solid var(--border);padding:10px 18px;
-  border-radius:100px;text-decoration:none;color:var(--muted)
+  display:flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;
+  font-size:13px;font-weight:500;padding:9px 16px;border:1px solid var(--border);
+  border-radius:100px;transition:all 0.2s;white-space:nowrap;background:var(--bg);
 }
-.project-link.primary-link{background:var(--accent);color:#fff}
+.project-link:hover{color:var(--text);border-color:var(--border-strong);background:var(--card);}
+.project-link.primary-link{background:var(--accent);color:#fff;border-color:var(--accent);}
+.project-link.primary-link:hover{background:#1648c7;}
 
-/* EXPERIENCE */
-.exp-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:20px;padding:40px
+/* coming soon — intentional, not broken */
+.wip-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;padding:28px 36px;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
 }
-.exp-role{
-  font-family:'Playfair Display',serif;font-size:20px;margin-bottom:4px
+.wip-left{display:flex;align-items:center;gap:20px;}
+.wip-icon{
+  width:48px;height:48px;border-radius:14px;
+  background:var(--amber-light);border:1px solid var(--amber-border);
+  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
 }
-.exp-company{color:var(--muted);margin-bottom:24px}
-.exp-points li{
-  font-size:14px;color:var(--muted);margin-bottom:10px
+.wip-number{font-size:11px;font-weight:500;color:var(--subtle);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.wip-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.wip-desc{font-size:13px;color:var(--muted);font-weight:300;max-width:420px;line-height:1.6;}
+.wip-badge{
+  background:var(--amber-light);border:1px solid var(--amber-border);
+  color:var(--amber);border-radius:100px;padding:5px 14px;
+  font-size:12px;font-weight:500;white-space:nowrap;flex-shrink:0;
 }
 
-/* CONTACT */
+/* ── CERTIFICATIONS ── */
+.certs-section{padding:0 64px 96px;max-width:1200px;margin:0 auto;}
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.cert-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:22px;transition:all 0.25s;position:relative;
+}
+.cert-card:hover{border-color:var(--border-strong);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.05);}
+.cert-status{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:500;border-radius:100px;
+  padding:3px 10px;margin-bottom:14px;
+}
+.cert-status.earned{background:var(--green-light);color:var(--green);border:1px solid #bbf7d0;}
+.cert-status.progress{background:var(--amber-light);color:var(--amber);border:1px solid var(--amber-border);}
+.cert-status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+.cert-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px;line-height:1.4;}
+.cert-issuer{font-size:12px;color:var(--subtle);font-weight:300;}
+
+/* ── EXPERIENCE ── */
+.experience-section{padding:0 64px 96px;max-width:1200px;margin:0 auto;}
+.exp-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;gap:20px;}
+.exp-company-badge{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--accent-light);border:1px solid var(--accent-border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--accent);flex-shrink:0;
+}
+.exp-title-block{flex:1;}
+.exp-role{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.exp-company{font-size:14px;color:var(--muted);font-weight:300;}
+.exp-period{
+  background:var(--surface);border:1px solid var(--border);border-radius:100px;
+  padding:5px 14px;font-size:12px;color:var(--muted);white-space:nowrap;height:fit-content;
+}
+.exp-divider{border:none;border-top:1px solid var(--border);margin-bottom:24px;}
+.exp-points{display:flex;flex-direction:column;gap:10px;list-style:none;}
+.exp-points li{font-size:14px;color:var(--muted);padding-left:20px;position:relative;line-height:1.75;font-weight:300;}
+.exp-points li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:12px;top:3px;}
+.exp-points li strong{color:var(--text);font-weight:500;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:24px;padding-top:20px;border-top:1px solid var(--border);}
+
+/* ── CONTACT ── */
+.contact-section{padding:0 64px 120px;max-width:1200px;margin:0 auto;}
 .contact-card{
-  background:var(--text);color:#fff;text-align:center;
-  padding:72px;border-radius:24px
+  background:var(--text);border-radius:24px;padding:72px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.contact-card::before{
+  content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+  width:400px;height:300px;
+  background:radial-gradient(ellipse,rgba(255,255,255,0.06),transparent 70%);
+  pointer-events:none;
 }
 .contact-title{
-  font-family:'Playfair Display',serif;
-  font-size:42px;margin-bottom:16px
+  font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);
+  font-weight:700;letter-spacing:-1px;margin-bottom:14px;color:#fff;line-height:1.1;
 }
-.contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.contact-title em{font-style:italic;color:#93c5fd;}
+.contact-sub{color:rgba(255,255,255,0.55);font-size:15px;margin-bottom:40px;font-weight:300;}
+.contact-links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
 .contact-link{
-  border:1px solid rgba(255,255,255,.25);
-  padding:12px 24px;border-radius:100px;
-  color:#fff;text-decoration:none
+  display:flex;align-items:center;gap:9px;padding:13px 22px;border-radius:100px;
+  text-decoration:none;font-weight:500;font-size:14px;transition:all 0.2s;
+  border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.85);
+  background:rgba(255,255,255,0.07);
 }
-.contact-link.primary{background:#fff;color:var(--text)}
+.contact-link:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.3);transform:translateY(-2px);}
+.contact-link.primary{background:#fff;color:var(--text);border-color:#fff;}
+.contact-link.primary:hover{background:#f0f0f0;}
 
-footer{text-align:center;font-size:12px;color:var(--subtle);padding:24px}
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:24px 64px;font-size:12px;color:var(--subtle);
+  border-top:1px solid var(--border);position:relative;z-index:1;
+  display:flex;justify-content:space-between;align-items:center;
+}
+
+/* ── ANIMATIONS ── */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+
 @media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding:100px 24px}
-  nav{padding:16px 24px}
+  nav{padding:16px 24px;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;padding:100px 24px 60px;gap:40px;}
+  .hero-right{display:none;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);}
+  .about-section,.skills-section,.projects-section,.certs-section,.experience-section,.contact-section,.divider{padding-left:24px;padding-right:24px;}
+  .about-grid{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
+  .certs-grid{grid-template-columns:1fr;}
+  .project-card{grid-template-columns:1fr;}
+  .project-links{flex-direction:row;align-items:flex-start;}
+  .wip-card{flex-direction:column;align-items:flex-start;}
+  .contact-card{padding:40px 24px;}
+  footer{flex-direction:column;gap:8px;}
 }
 </style>
 </head>
-
 <body>
 
 <nav>
-  <a class="nav-logo">Samhitha<em>.</em></a>
+  <a href="#" class="nav-logo">Samhitha<em>.</em></a>
   <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="mailto:samhithaaram11@gmail.com"
+        onclick="window.open('https://mail.google.com/mail/?view=cm&to=samhithaaram11@gmail.com&su=Data Analyst Opportunity','_blank');return false;"
+        class="nav-cta">Hire Me</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div>
-    <div class="hero-eyebrow">DATA ANALYST · 4 YEARS EXPERIENCE · BENGALURU</div>
-    <h1>Turning complex data<br/>into <em>business decisions</em><br/>at scale.</h1>
+  <div class="hero-left fade-in">
+    <div class="hero-eyebrow">Data Analyst · Bengaluru</div>
+    <h1>Turning data<br/>into <em>decisions</em><br/>that matter.</h1>
     <p class="hero-sub">
-      Data Analyst & Power BI Developer with 4 years of experience building
-      enterprise dashboards, SQL pipelines, and analytics solutions for
-      global technology clients across 6 international markets.
+      4+ years building enterprise dashboards, ETL pipelines, and analytics solutions
+      for global technology clients across <strong>6 international markets</strong>.
     </p>
     <div class="hero-ctas">
       <a href="#projects" class="btn-primary">View My Work</a>
-      <a href="#contact" class="btn-outline">Get In Touch</a>
+      <a href="mailto:samhithaaram11@gmail.com"
+         onclick="window.open('https://mail.google.com/mail/?view=cm&to=samhithaaram11@gmail.com&su=Data Analyst Opportunity','_blank');return false;"
+         class="btn-outline">Get In Touch</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Years</div></div>
-      <div class="stat"><div class="stat-num">85%</div><div class="stat-label">Time Saved</div></div>
-      <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Stakeholders</div></div>
+      <div class="stat">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years Exp.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">85%</div>
+        <div class="stat-label">Time Saved</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Stakeholders</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Markets</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right fade-in">
+    <div class="profile-card">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <div class="profile-avatar">SA</div>
+        <div>
+          <div class="profile-name">Samhitha A Ram</div>
+          <div class="profile-title">Data Analyst / Power BI Developer</div>
+        </div>
+      </div>
+      <div class="profile-tags">
+        <span class="ptag">Power BI</span>
+        <span class="ptag">SQL</span>
+        <span class="ptag">Python</span>
+        <span class="ptag">ETL Pipelines</span>
+        <span class="ptag">Streamlit</span>
+        <span class="ptag">DAX</span>
+      </div>
+    </div>
+    <div class="mini-cards">
+      <div class="mini-card">
+        <div class="mini-card-icon">📊</div>
+        <div class="mini-card-label">Dashboards Built</div>
+        <div class="mini-card-val">3 Enterprise</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-icon">⚡</div>
+        <div class="mini-card-label">Pipeline Speed</div>
+        <div class="mini-card-val">4hr → 30min</div>
+      </div>
+    </div>
+    <div class="availability-bar">
+      <div class="avail-dot"></div>
+      Available for new opportunities — Bengaluru & Remote
     </div>
   </div>
 </section>
 
-<section id="projects">
-  <div class="section-eyebrow">SELECTED WORK</div>
-  <h2 class="section-title">Projects</h2>
-  <p class="section-sub">Enterprise-grade analytics and end-to-end data solutions.</p>
+<div class="divider"><hr/></div>
 
+<!-- ABOUT -->
+<section class="about-section fade-in" id="about">
+  <div class="section-eyebrow">Who I am</div>
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a Data Analyst and Power BI Developer based in Bengaluru with <strong>4+ years of experience</strong> turning raw telemetry and operational data into decisions that actually move the needle.
+      </p>
+      <p>
+        My work sits at the intersection of engineering and business — I build the pipelines, write the queries, design the dashboards, and then sit in the room explaining what the numbers mean to leadership. I care deeply about the <strong>last mile of analytics</strong>: making sure insights are understood and acted on, not just produced.
+      </p>
+      <p>
+        I hold a <strong>B.E. in Electronics & Communication Engineering</strong> from Jyothy Institute of Technology (2021), and I've spent the years since applying that systems-thinking background to data problems at scale across global consumer electronics markets.
+      </p>
+    </div>
+    <div class="about-values">
+      <div class="value-item">
+        <div class="value-icon blue">🎯</div>
+        <div>
+          <div class="value-title">Impact-first mindset</div>
+          <div class="value-desc">Every dashboard I build is designed to answer a real business question — not just display numbers.</div>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon green">🔁</div>
+        <div>
+          <div class="value-title">End-to-end ownership</div>
+          <div class="value-desc">From raw device logs to executive-ready visuals — I handle the full analytics stack independently.</div>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-icon warm">🤝</div>
+        <div>
+          <div class="value-title">Stakeholder fluency</div>
+          <div class="value-desc">Comfortable presenting to client leadership and engineering teams alike — I translate both ways.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr/></div>
+
+<!-- SKILLS -->
+<section class="skills-section fade-in" id="skills">
+  <div style="padding-top:96px;">
+    <div class="section-eyebrow">What I work with</div>
+    <h2 class="section-title">Skills & Tools</h2>
+    <p class="section-sub">Full-stack analytics — from raw data pipelines to polished executive dashboards.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon bi">📊</div>
+      <div class="skill-name">Business Intelligence</div>
+      <div class="skill-tags">
+        <span class="tag">Power BI</span><span class="tag">DAX</span>
+        <span class="tag">Power Query</span><span class="tag">KPI Dev</span>
+        <span class="tag">Threshold Alerting</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon data">🗄️</div>
+      <div class="skill-name">Data Engineering</div>
+      <div class="skill-tags">
+        <span class="tag">SQL</span><span class="tag">ETL</span>
+        <span class="tag">PostgreSQL</span><span class="tag">SQL Server</span>
+        <span class="tag">Window Fns</span><span class="tag">CTEs</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon code">🐍</div>
+      <div class="skill-name">Programming</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">Pandas</span>
+        <span class="tag">NumPy</span><span class="tag">Matplotlib</span>
+        <span class="tag">Streamlit</span><span class="tag">SQLite</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon cloud">☁️</div>
+      <div class="skill-name">Cloud & DevOps</div>
+      <div class="skill-tags">
+        <span class="tag">Azure</span><span class="tag">Git</span>
+        <span class="tag">Jenkins CI/CD</span><span class="tag">REST APIs</span>
+        <span class="tag">Excel VBA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr/></div>
+
+<!-- PROJECTS -->
+<section class="projects-section fade-in" id="projects">
+  <div style="margin-bottom:52px;padding-top:96px;">
+    <div class="section-eyebrow">What I've built</div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-sub">Personal projects showcasing end-to-end analytics — from data to deployed app.</p>
+  </div>
   <div class="projects-grid">
+
     <div class="project-card featured">
       <div>
-        <h3 class="project-title">System Performance Monitoring & ETL Automation</h3>
+        <div class="featured-badge">★ Featured Project</div>
+        <div class="project-number">01 / Data Analytics + Web App</div>
+        <div class="project-title">Food Spend & Health Intelligence Tracker</div>
         <p class="project-desc">
-          Real-world enterprise analytics solution for a global electronics client,
-          enabling proactive issue detection and data-driven product decisions.
+          An end-to-end analytics application that ingests Zomato/Swiggy/Blinkit order history,
+          classifies food as healthy/moderate/unhealthy, and generates personalised spend insights.
+          Built with a normalised SQLite database, interactive Streamlit dashboard, and Power BI report.
         </p>
         <div class="project-tools">
-          <span class="tool-tag">Power BI</span><span class="tool-tag">SQL</span>
-          <span class="tool-tag">Python</span><span class="tool-tag">Jenkins</span>
+          <span class="tool-tag">Python</span><span class="tool-tag">Pandas</span>
+          <span class="tool-tag">SQLite</span><span class="tool-tag">Streamlit</span>
+          <span class="tool-tag">Power BI</span><span class="tool-tag">Matplotlib</span>
         </div>
-        <div class="highlight">• Reduced reporting time by 85%</div>
-        <div class="highlight">• Served 20+ engineering & product stakeholders</div>
-        <div class="highlight">• Identified 15+ critical issues pre-production</div>
+        <div class="project-highlights">
+          <div class="highlight">Normalised 3-table SQLite schema with FK relationships and data quality validation</div>
+          <div class="highlight">Health classification engine — Healthy / Moderate / Unhealthy scoring per item</div>
+          <div class="highlight">Interactive filters by platform, date range, and meal time</div>
+          <div class="highlight">Personalised spend reduction recommendations powered by pattern analysis</div>
+        </div>
       </div>
       <div class="project-links">
-        <span class="project-link">Client Work (NDA)</span>
+        <a href="https://foodtracker-3lrjvhq625dnkpqjvt8omw.streamlit.app/" class="project-link primary-link" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo
+        </a>
+        <a href="https://github.com/samcelo1714/Food_Tracker" class="project-link" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- WIP project — intentional, not broken-looking -->
+    <div class="wip-card">
+      <div class="wip-left">
+        <div class="wip-icon">💰</div>
+        <div>
+          <div class="wip-number">02 / In Development</div>
+          <div class="wip-title">Personal Finance Dashboard</div>
+          <div class="wip-desc">UPI/bank statement analytics — expense categorisation, savings trends, and budget recommendations. Targeting fintech and personal finance clients.</div>
+        </div>
+      </div>
+      <div class="wip-badge">⚙ Deploying Soon</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"><hr/></div>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section fade-in" id="certifications">
+  <div style="margin-bottom:52px;padding-top:96px;">
+    <div class="section-eyebrow">Credentials</div>
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-sub">Continuous learning alongside hands-on delivery.</p>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-status progress">
+        <span class="cert-status-dot"></span> In Progress
+      </div>
+      <div class="cert-title">Microsoft PL-300 — Power BI Data Analyst Associate</div>
+      <div class="cert-issuer">Microsoft · Expected 2026</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-status progress">
+        <span class="cert-status-dot"></span> In Progress
+      </div>
+      <div class="cert-title">Google Data Analytics Professional Certificate</div>
+      <div class="cert-issuer">Google / Coursera · Expected 2026</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-status earned">
+        <span class="cert-status-dot"></span> Earned
+      </div>
+      <div class="cert-title">Add your current or completed certification here</div>
+      <div class="cert-issuer">Issuer · Year</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr/></div>
+
+<!-- EXPERIENCE -->
+<section class="experience-section fade-in" id="experience">
+  <div style="margin-bottom:52px;padding-top:96px;">
+    <div class="section-eyebrow">Where I've worked</div>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">4+ years building real-world analytics solutions across global technology clients.</p>
+  </div>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-company-badge">C</div>
+      <div class="exp-title-block">
+        <div class="exp-role">Data Analyst / Power BI Developer</div>
+        <div class="exp-company">Celominds Solutions Pvt. Ltd. · Bengaluru</div>
+      </div>
+      <div class="exp-period">April 2022 — Present</div>
+    </div>
+    <hr class="exp-divider"/>
+    <ul class="exp-points">
+      <li>Designed and maintain <strong>3 enterprise Power BI dashboards</strong> serving 20+ stakeholders across engineering, product & client teams — tracking CPU utilisation, memory, and system performance for a global consumer electronics client across 6 international markets</li>
+      <li>Built automated ETL pipeline using Python + SQL reducing manual data prep by <strong>85%</strong> — from ~4 hours to 30 minutes per release cycle, eliminating data entry errors entirely</li>
+      <li>Implemented threshold-based monitoring that proactively identified <strong>15+ critical performance degradations</strong> before customer impact — results presented to client leadership in quarterly reviews</li>
+      <li>Migrated reporting from static Excel workflows to live database connections, improving data freshness from weekly batch updates to <strong>real-time sync</strong></li>
+      <li>Developed SQL queries with CTEs & window functions aggregating metrics across <strong>30+ test scenarios</strong> (boot time, navigation latency, content load speeds) for root-cause investigation</li>
+      <li>Created Python automation scripts integrated into Jenkins CI/CD pipelines to standardise device telemetry across <strong>6 country-specific hardware variants</strong></li>
+    </ul>
+    <div class="exp-tags">
+      <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Python</span>
+      <span class="tag">SQL</span><span class="tag">ETL</span><span class="tag">Jenkins</span>
+      <span class="tag">Azure</span><span class="tag">REST APIs</span><span class="tag">SQL Server</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr/></div>
+
+<!-- CONTACT -->
+<section class="contact-section fade-in" id="contact">
+  <div style="padding-top:96px;">
+    <div class="contact-card">
+      <div class="contact-title">Let's work<br/><em>together</em></div>
+      <p class="contact-sub">Open to Data Analyst roles and freelance projects · Based in Bengaluru · Available immediately</p>
+      <div class="contact-links">
+        <a href="mailto:samhithaaram11@gmail.com"
+           onclick="window.open('https://mail.google.com/mail/?view=cm&to=samhithaaram11@gmail.com&su=Data Analyst Opportunity','_blank');return false;"
+           class="contact-link primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          samhithaaram11@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/samhitha-a-ram-572977179" class="contact-link" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/samcelo1714/" class="contact-link" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="tel:+919620614054" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 96206 14054
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="experience">
-  <div class="section-eyebrow">EXPERIENCE</div>
-  <h2 class="section-title">Professional Experience</h2>
+<footer>
+  <span>Designed & built by Samhitha A Ram · Bengaluru, India</span>
+  <span style="color:var(--border-strong);">© 2026</span>
+</footer>
 
-  <div class="exp-card">
-    <div class="exp-role">Data Analyst / Power BI Developer</div>
-    <div class="exp-company">Celominds Solutions Pvt. Ltd. · Bengaluru</div>
-    <ul class="exp-points">
-      <li>Built enterprise dashboards tracking CPU, memory & performance metrics</li>
-      <li>Automated ETL pipelines using Python & SQL</li>
-      <li>Delivered insights influencing product prioritisation</li>
-    </ul>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="contact-card">
-    <div class="contact-title">Let’s work together</div>
-    <p>Open to Data Analyst roles · Bengaluru · Immediate availability</p>
-    <div class="contact-links">
-      <a href="mailto:samhithaaram11@gmail.com" class="contact-link primary">Email Me</a>
-      <a href="https://www.linkedin.com/in/samhitha-a-ram-572977179" class="contact-link">LinkedIn</a>
-      <a href="https://github.com/samcelo1714" class="contact-link">GitHub</a>
-    </div>
-  </div>
-</section>
-
-<footer>© 2026 · Samhitha A Ram</footer>
-
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
